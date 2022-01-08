@@ -1,14 +1,88 @@
-.array-container
+.title
 {
-    margin: 0 auto;
+    position: absolute;
+    top: 0vh;
+    left: 0vh;
+    width: 100vw;
+    height: 5vh;
+    margin-top:auto;
+    margin-bottom:auto;
+    text-align:left;
+    /* //padding: 10px 50vw 10px 0px; */
+    background-color: rgb(1, 206, 11);
+    display: inline;
+    font-size: 1.5vw;
+}
+
+.arrayBar
+{
+    width: 15px;
+    display: inline-block;
+    background-color: rgb(124, 247, 108);
+    margin: 0 1px;
+}
+
+.arrayContainer
+{
+    position: absolute;
+    bottom: 0vh;
+    left: 10vh;
+}
+
+button {
+    height: 50px;
+    width: 150px;
+    left: 0vh;
+    top: 0vh;
+}
+
+html {
+    background-color: gray;
+}
+
+.mainDiv {
+    left: 0vh;
+    width: 100vw;
+    border-color: rgb(46, 139, 34);
+    
+}
+
+.newArray {
+    left: 0vh;
 }
 
 
+.algorithmPanel {
+    position: absolute;
+    top: 5vh;
+    left: 0vh;
+    margin-top:auto;
+    margin-bottom:auto;
+    text-align:center;
+    padding: 10px 10px 10px 10px;
+    background-color: rgb(173, 165, 117);
+    display: inline;
+}
 
-.array-bar
-{
-    background-color: aqua;
-    margin: 0 5px;
-    font-size: 24px;
+.algorithmButton {
+    background-color: rgb(247, 163, 7)
+}
+
+.speedPanel {
+    position: absolute;
+    top: 5vh;
+    right: 0vh;
+    margin-top:auto;
+    margin-bottom:auto;
+    text-align:center;
+    padding: 10px 10px 10px 10px;
+    background-color: rgb(173, 165, 117);
+    display: inline;
+}
+
+.playPanel {
+    margin-top: 100px;
+    position: absolute;
+    top: 10vh;  
 }
 
