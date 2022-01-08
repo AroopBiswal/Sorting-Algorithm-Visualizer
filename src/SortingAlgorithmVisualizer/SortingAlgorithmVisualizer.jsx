@@ -84,7 +84,7 @@ export default class SortingAlgorithmVisualizer extends React.Component {
             <br></br>
             <br></br>
             </div>
-            <div id="playPanel">
+            <div class="playPanel">
             <button onClick={() => this.randomizeArray()}>Beginning</button>
             <button onClick={() => this.randomizeArray()}>Back</button>
             <button onClick={() => this.randomizeArray()}>Pause</button>

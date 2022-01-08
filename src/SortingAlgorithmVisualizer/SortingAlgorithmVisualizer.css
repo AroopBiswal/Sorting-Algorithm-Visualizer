@@ -9,7 +9,7 @@
     margin-bottom:auto;
     text-align:left;
     /* //padding: 10px 50vw 10px 0px; */
-    background-color: rgb(1, 206, 11);
+    background-color: rgb(0, 255, 255);
     display: inline;
     font-size: 1.5vw;
 }
@@ -81,8 +81,10 @@ html {
 }
 
 .playPanel {
-    margin-top: 100px;
     position: absolute;
-    top: 10vh;  
+    top: 15vh;
+    left: 50vh;
+    padding: 10px 10px 10px 10px;
+    background-color: rgb(173, 165, 117);
 }
 
