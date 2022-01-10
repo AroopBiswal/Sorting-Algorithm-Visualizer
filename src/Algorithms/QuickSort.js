@@ -21,12 +21,8 @@ function quickSortHelper(array, start, end)
             swap(array, i, pivotIndex)
             pivotIndex++;
         }
-        else
-        {
-            rightArray.push(array[i]);
-            animations.push([i, ]);
-        }
     }
+    swap(array, )
 
     return quickSortHelper(leftArray).concat(pivot, quickSort(rightArray));
 }
