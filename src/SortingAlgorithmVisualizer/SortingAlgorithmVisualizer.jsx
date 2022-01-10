@@ -25,9 +25,9 @@ export default class SortingAlgorithmVisualizer extends React.Component {
     }
 
     quickSort() {
-        // var array = this.state.array;
-        // array = quickSort(array);
-        // this.setState({array});
+        var array = this.state.array;
+        array = quickSort(array);
+        this.setState({array});
 
         const arrayBars = document.getElementsByClassName("arrayBar");
         const barOneStyle = arrayBars[5].style;
