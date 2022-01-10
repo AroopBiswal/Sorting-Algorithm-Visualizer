@@ -1,4 +1,5 @@
 import './SortingAlgorithmVisualizer.css';
+import quickSort from '../Algorithms/QuickSort';
 import React from 'react';
 
 export default class SortingAlgorithmVisualizer extends React.Component {
@@ -6,15 +7,8 @@ export default class SortingAlgorithmVisualizer extends React.Component {
         super(props);
         this.state = {
             array: []
-            // colorArray: [r1, g1, b1, r2, g2, b2]
         };
     }
-
-    // randomizeColor() {
-    //     var maxColor = 5;
-    //     var min = 0;
-    //     Math.floor(Math.random() * (maxColor - min + 1) + min));
-    // }
 
     randomizeArray() {
         var max = 500;
@@ -24,7 +18,6 @@ export default class SortingAlgorithmVisualizer extends React.Component {
             array.push(Math.floor(Math.random() * (max - min + 1) + min));
         }
         this.setState({ array });
-        console.log("RANDOMIZE");
     }
 
     componentDidMount() {
@@ -32,7 +25,13 @@ export default class SortingAlgorithmVisualizer extends React.Component {
     }
 
     quickSort() {
+        // var array = this.state.array;
+        // array = quickSort(array);
+        // this.setState({array});
 
+        const arrayBars = document.getElementsByClassName("arrayBar");
+        const barOneStyle = arrayBars[5].style;
+        barOneStyle.backgroundColor = 'red';
     }
     
     bubbleSort() {
@@ -40,7 +39,7 @@ export default class SortingAlgorithmVisualizer extends React.Component {
     }
 
     mergeSort() {
-        
+
     }
 
     insertionSort() {
@@ -93,10 +92,10 @@ export default class SortingAlgorithmVisualizer extends React.Component {
             <button onClick={() => this.randomizeArray()}>End</button>
             </div>
             
-            <div className="arrayContainer">
+            <div id="arrayContainer" className="arrayContainer">
                 
                 {(array.map((value, index) => (
-                    <div className="arrayBar" keys={index} style={{height: value}}>
+                    <div className="arrayBar" key={index} style={{ height: value}}>
                     </div>
                 )))}
             </div>
