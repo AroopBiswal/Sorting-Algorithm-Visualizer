@@ -5,26 +5,27 @@ function quickSort(array, start, end) {
     }
     
     let index = quickSortHelper(array, start, end);
+    quickSort(array, start, index - 1);
+    quickSort(array, index + 1, end);
 }
 
 
 function quickSortHelper(array, start, end) 
 {
-    var pivotIndex = start;
-    var pivot = array[pivotIndex];
-    // let length = array.length;
+    var pivotIndex = end;
+    var pivot = array[start];
 
     for (var i = start; i < end; i++)
     {
-        if (array[i] < pivot)
+        if (array[i] >= pivot)
         {
             swap(array, i, pivotIndex)
-            pivotIndex++;
+            pivotIndex--;
         }
     }
-    swap(array, )
+    swap(array, start, pivotIndex);
 
-    return quickSortHelper(leftArray).concat(pivot, quickSort(rightArray));
+    return pivotIndex;
 }
 
 function swap(array, index1, index2)
