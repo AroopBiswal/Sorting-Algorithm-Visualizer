@@ -7,15 +7,48 @@ html {
     top: 0vh;
     left: 0vh;
     width: 100vw;
-    height: 5vh;
-    margin-top:auto;
-    margin-bottom:auto;
+    height: 4vh;
     text-align:left;
-    /* //padding: 10px 50vw 10px 0px; */
+    padding: 10px 50vw 10px 0px;
     background-color: rgb(0, 255, 255);
-    display: inline;
-    font-size: 1.5vw;
+    font-size: 2vw;
+    font-weight: bold;
+    text-transform: uppercase;
 }
+
+.algorithmPanel {
+    position: absolute;
+    top: 7vh;
+    left: 0vh;
+    text-align:center;
+    padding: 10px 10px 10px 10px;
+    background-color: rgb(173, 165, 117);
+}
+
+.speedPanel {
+    position: absolute;
+    top: 7vh;
+    right: 0vh;
+    text-align:center;
+    width: 400px;
+    height: 70px;
+    background-color: pink;
+}
+.input {
+    position: absolute;
+    top: 6vh;
+    right: 3vw;
+    
+}
+
+.playPanel {
+    position: absolute;
+    top: 17vh;
+    left: 50vh;
+    padding: 10px 10px 10px 10px;
+    background-color: rgb(173, 165, 117);
+}
+
 
 .arrayBar
 {
@@ -29,7 +62,7 @@ html {
 {
     position: absolute;
     bottom: 0vh;
-    left: 10vh;
+    left: 9vh;
 }
 
 button {
@@ -39,51 +72,11 @@ button {
     top: 0vh;
 }
 
-.mainDiv {
-    left: 0vh;
-    width: 100vw;
-    border-color: rgb(46, 139, 34);
-    
-}
-
 .newArray {
     left: 0vh;
 }
 
-
-.algorithmPanel {
-    position: absolute;
-    top: 5vh;
-    left: 0vh;
-    margin-top:auto;
-    margin-bottom:auto;
-    text-align:center;
-    padding: 10px 10px 10px 10px;
-    background-color: rgb(173, 165, 117);
-    display: inline;
-}
-
 .algorithmButton {
-    background-color: rgb(247, 163, 7)
+    background-color: rgb(247, 163, 7);
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
-
-.speed {
-    position: absolute;
-    top: 5vh;
-    right: 0vh;
-    margin-top:auto;
-    margin-bottom:auto;
-    text-align:center;
-    padding: 10px 10px 10px 10px;
-    background-color: rgb(173, 165, 117);
-    display: inline;
-}
-
-.playPanel {
-    position: absolute;
-    top: 15vh;
-    left: 50vh;
-    padding: 10px 10px 10px 10px;
-    background-color: rgb(173, 165, 117);
-}
-

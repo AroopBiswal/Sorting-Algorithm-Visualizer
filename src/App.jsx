@@ -3,13 +3,13 @@ import quickSort from "./Algorithms/QuickSort";
 import React from "react";
 
 export default class App extends React.Component {
-    values = [1, 2, 3, 4, 5];
+    values = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
     constructor(props) {
         super(props);
         this.state = {
             array: [],
-            speed: { min: 1, max: 5 },
+            speed: { min: 1, max: 10 },
         };
     }
     handleInputChange = (e) => {
@@ -54,20 +54,20 @@ export default class App extends React.Component {
         const { array } = this.state;
         //console.log("Randomized Array");
         return (
-            <div id="mainDiv">
-                <br></br>
+            <body>
                 <div>
                     <div class="title">Sorting Algorithm Visualizer</div>
-                    <div class="speed">
+                    <div class="speedPanel">
                         <p>Speed</p>
                         <input
+                            class="input"
+                            style={{ width: "300px" }}
                             onInput={this.handleInputChange}
                             type="range"
                             min="0"
                             value={this.state.speed}
-                            max="4"
+                            max="10"
                             step="1"
-                            list="tick-list"
                         />
                     </div>
                     <div class="algorithmPanel">
@@ -114,9 +114,6 @@ export default class App extends React.Component {
                             Heap Sort
                         </button>
                     </div>
-                    {/* {&nbsp},
-            {&nbsp}, */}
-                    {/* <span style={{padding: 300}}> </span> */}
                 </div>
                 <div class="playPanel">
                     <button onClick={() => this.randomizeArray()}>
@@ -138,7 +135,7 @@ export default class App extends React.Component {
                         ></div>
                     ))}
                 </div>
-            </div>
+            </body>
         );
     }
 }
