@@ -88,7 +88,7 @@ export default class App extends React.Component {
                             class="button"
                             onClick={() => this.randomizeArray()}
                         >
-                            Generate New Array
+                            New Array
                         </button>
                         <button class="button" onClick={() => this.quickSort()}>
                             Quick Sort
