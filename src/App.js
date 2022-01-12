@@ -64,7 +64,6 @@ export default class App extends React.Component {
                     <div className="speedText">Speed</div>
                     <input
                         className="speedBar"
-                        class="input"
                         style={{ width: "300px" }}
                         onInput={this.handleSpeed}
                         type="range"
@@ -76,7 +75,6 @@ export default class App extends React.Component {
                     <div className="sizeText">Size</div>
                     <input
                         className="sizeBar"
-                        class="input"
                         style={{ width: "300px" }}
                         onInput={this.handleSize}
                         type="range"

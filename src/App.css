@@ -23,10 +23,13 @@ html {
     text-transform: uppercase;
     font-weight: bold;
     font-size: 1.5em;
-    margin-left: 400px;
+    margin-left: 325px;
+    margin-top: 10px;
 }
 .speedBar {
-    margin-left: 200px
+    position: absolute;
+    margin-top: 20px;
+    margin-left: 425px;
 }
 .sizeText {
     position: absolute;
@@ -34,10 +37,13 @@ html {
     text-transform: uppercase;
     font-weight: bold;
     font-size: 1.5em;
-    margin-left: 900px;
+    margin-left: 825px;
+    margin-top: 10px;
 }
 .sizeBar {
     position: absolute;
+    margin-top: 20px;
+    margin-left: 895px;
 }
 
 .button {
