@@ -14,9 +14,10 @@ export default function bubbleSort(array) {
             visualizaion.push([j, j + 1, null, null])
             if (duplicate[j] > duplicate[j + 1]) {
                 swap(duplicate, j, j + 1);
-                duplicate.push([j, j + 1, duplicate.slice(), null]);
+                visualizaion.push([j, j + 1, duplicate.slice(), null]);
             }
         }
+        visualizaion.push([null, null, null, j])
     }
     return visualizaion;
 };

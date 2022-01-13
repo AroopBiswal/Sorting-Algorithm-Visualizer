@@ -2,7 +2,7 @@ import React from "react";
 import "./App.css";
 
 //Algorithms
-//import bubbleSort from "Algorithms/bubbleSort";
+import bubbleSort from "./Algorithms/BubbleSort.js";
 //import quickSort from "./Algorithms/QuickSort";
 
 export default class App extends React.Component {
@@ -10,7 +10,10 @@ export default class App extends React.Component {
         super(props);
         this.state = {
             array: [],
-            speed: 5,
+            compared: [],
+            swapped: [],
+            sorted: [],
+            speed: 20,
             size: 100,
             sorting: false,
             completed: false,
@@ -18,6 +21,7 @@ export default class App extends React.Component {
     }
     handleSpeed = (speed) => {
         this.setState({ speed: speed.currentTarget.value });
+        console.log(this.state.speed);
     };
 
     handleSize = (size) => {
@@ -28,6 +32,8 @@ export default class App extends React.Component {
     randomizeArray() {
         var max = 500;
         var min = 1;
+        this.setState({ sorting: false });
+        this.setState({ completed: false });
         const array = [];
         for (let i = 0; i < this.state.size; i++) {
             array.push(Math.floor(Math.random() * (max - min + 1) + min));
@@ -39,13 +45,38 @@ export default class App extends React.Component {
         this.randomizeArray();
     }
 
+    visualize(visualization) {
+        this.setState({ sorting: true });
+        for (let i = 0; i < visualization.length; i++) {
+            const [j, k, tempArray, index] = visualization[i];
+            this.setState({ compared: [j, k] });
+            this.setState({ swapped: [] });
+            setTimeout(() => {
+                if (index !== null) {
+                    this.setState({ sorted: this.state.sorted.push(index) });
+                }
+
+                if (tempArray !== null) {
+                    this.setState({ array: tempArray });
+                    this.setState({ swapped: [j, k] });
+                }
+            }, i * 20 / this.state.speed);
+        }
+        this.setState({ sorting: false });
+        this.setState({ completed: true });
+    }
+
+    bubbleSort() {
+        console.log("bubbleSort");
+        this.visualize(bubbleSort(this.state.array));
+    }
+
     render() {
-        const { array } = this.state;
-        //console.log("Randomized Array");
+        const array = this.state.array;
         return (
-            <body>
+            <div>
                 <div className="menuContainer">
-                    <div class="title">Sorting Algorithm Visualizer</div>
+                    <div className="title">Sorting Algorithm Visualizer</div>
                     <div className="speedText">Speed</div>
                     <input
                         disabled={this.state.sorting}
@@ -54,7 +85,7 @@ export default class App extends React.Component {
                         onChange={this.handleSpeed}
                         type="range"
                         min={1}
-                        max={5}
+                        max={20}
                         value={this.state.speed}
                     />
                     <div className="sizeText">Size</div>
@@ -68,69 +99,55 @@ export default class App extends React.Component {
                         value={this.state.size}
                         style={{ width: "300px" }}
                     />
-                    <div className="buttons">
-                        <button
-                            disabled={this.state.sorting}
-                            class="button"
-                            onClick={() => this.randomizeArray()}
-                        >
-                            Randomize
-                        </button>
-                        <button
-                            disabled={
-                                this.state.sorting || this.state.completed
-                            }
-                            class="button"
-                            onClick={() => this.quickSort()}
-                        >
-                            Bubble Sort
-                        </button>
-                        <button
-                            disabled={
-                                this.state.sorting || this.state.completed
-                            }
-                            class="button"
-                            onClick={() => this.bubbleSort()}
-                        >
-                            Selection Sort
-                        </button>
-                        <button
-                            disabled={
-                                this.state.sorting || this.state.completed
-                            }
-                            class="button"
-                            onClick={() => this.mergeSort()}
-                        >
-                            Insertion Sort
-                        </button>
-                        <button
-                            disabled={
-                                this.state.sorting || this.state.completed
-                            }
-                            class="button"
-                            onClick={() => this.insertionSort()}
-                        >
-                            Heap Sort
-                        </button>
-                        <button
-                            disabled={
-                                this.state.sorting || this.state.completed
-                            }
-                            class="button"
-                            onClick={() => this.selectionSort()}
-                        >
-                            Merge Sort
-                        </button>
-                        <button
-                            disabled={
-                                this.state.sorting || this.state.completed
-                            }
-                            class="button"
-                            onClick={() => this.heapSort()}
-                        >
-                            Quick Sort
-                        </button>
-                    </div>
+                    <button
+                        disabled={this.state.sorting}
+                        className="button"
+                        onClick={() => this.randomizeArray()}
+                    >
+                        Randomize
+                    </button>
+                    <button
+                        disabled={this.state.sorting || this.state.completed}
+                        className="button"
+                        onClick={() => this.bubbleSort()}
+                    >
+                        Bubble Sort
+                    </button>
+                    <button
+                        disabled={this.state.sorting || this.state.completed}
+                        className="button"
+                        onClick={() => this.randomizeArray()}
+                    >
+                        Selection Sort
+                    </button>
+                    <button
+                        disabled={this.state.sorting || this.state.completed}
+                        className="button"
+                        onClick={() => this.mergeSort()}
+                    >
+                        Insertion Sort
+                    </button>
+                    <button
+                        disabled={this.state.sorting || this.state.completed}
+                        className="button"
+                        onClick={() => this.insertionSort()}
+                    >
+                        Heap Sort
+                    </button>
+                    <button
+                        disabled={this.state.sorting || this.state.completed}
+                        className="button"
+                        onClick={() => this.selectionSort()}
+                    >
+                        Merge Sort
+                    </button>
+                    <button
+                        disabled={this.state.sorting || this.state.completed}
+                        className="button"
+                        onClick={() => this.heapSort()}
+                    >
+                        Quick Sort
+                    </button>
                 </div>
 
                 <div id="arrayContainer" className="arrayContainer">
@@ -142,7 +159,7 @@ export default class App extends React.Component {
                         ></div>
                     ))}
                 </div>
-            </body>
+            </div>
         );
     }
 }
