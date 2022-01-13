@@ -1,8 +1,10 @@
 import React from "react";
+import InputRange from 'react-input-range';
 import "./App.css";
 
 //Algorithms
 import bubbleSort from "./Algorithms/BubbleSort.js";
+import selectionSort from "./Algorithms/SelectionSort.js"
 //import quickSort from "./Algorithms/QuickSort";
 
 export default class App extends React.Component {
@@ -12,8 +14,9 @@ export default class App extends React.Component {
             array: [],
             compared: [],
             sorted: [],
-            speed: 100,
-            size: 100,
+            swapped: [],
+            speed: { min: 1, max: 100},
+            size: { min: 10, max: 100},
             sorting: false,
             completed: false,
         };
@@ -37,6 +40,7 @@ export default class App extends React.Component {
         this.setState({ sorting: false });
         this.setState({ completed: false });
         this.setState({sorted: []});
+        this.setState({swapped: []});
         this.setState({compared: []});
         const tempArray = [];
         for (let i = 0; i < this.state.size; i++) {
@@ -68,7 +72,7 @@ export default class App extends React.Component {
 
                 if (tempArray !== null) {
                     this.setState({ array: tempArray });
-                    //this.setState({ swapped: [j, k] });
+                    this.setState({ swapped: [j, k] });
                 }
 
                 if (i >= visualization.length - 1) {
@@ -76,12 +80,16 @@ export default class App extends React.Component {
                     this.setState({ completed: true });
                 }
 
-            }, i * Math.ceil(300 / this.state.speed));
+            }, i * Math.ceil(400 / this.state.speed));
         }
     }
 
     bubbleSort() {
         this.visualize(bubbleSort(this.state.array));
+    }
+
+    selectionSort() {
+        this.visualize(selectionSort(this.state.array));
     }
 
     render() {
@@ -91,23 +99,23 @@ export default class App extends React.Component {
                 <div className="menuContainer">
                     <div className="title">Sorting Algorithm Visualizer</div>
                     <div className="speedText">Speed</div>
-                    <input
+                    <InputRange
                         disabled={this.state.sorting}
                         className="speedBar"
                         style={{ width: "300px" }}
                         onChange={this.handleSpeed}
                         type="range"
-                        min={1}
-                        max={100}
+                        minValue={1}
+                        maxValue={100}
                         value={this.state.speed}
                     />
                     <div className="sizeText">Size</div>
-                    <input
+                    <InputRange
                         disabled={this.state.sorting}
                         className="sizeBar"
                         type="range"
-                        min={10}
-                        max={100}
+                        minValue={5}
+                        maxValue={100}
                         onChange={this.handleSize}
                         value={this.state.size}
                         style={{ width: "300px" }}
@@ -129,7 +137,7 @@ export default class App extends React.Component {
                     <button
                         disabled={this.state.sorting || this.state.completed}
                         className="button"
-                        onClick={() => this.randomizeArray()}
+                        onClick={() => this.selectionSort()}
                     >
                         Selection Sort
                     </button>
@@ -167,6 +175,9 @@ export default class App extends React.Component {
                     {array.map((value, index) => {
                         let color = "lightblue";
                         if(this.state.compared && (index === this.state.compared[0] || index === this.state.compared[1])) {
+                            color = "lightcoral";
+                        }
+                        if(this.state.swapped && (index === this.state.swapped[0] || index === this.state.swapped[1])) {
                             color = "lightcoral";
                         }
                         if(this.state.sorted && this.state.sorted.includes(index)) {
