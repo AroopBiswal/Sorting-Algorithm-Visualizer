@@ -1,5 +1,5 @@
 import React from "react";
-import InputRange from 'react-input-range';
+//import InputRange from 'react-input-range';
 import "./App.css";
 
 //Algorithms
@@ -15,8 +15,10 @@ export default class App extends React.Component {
             compared: [],
             sorted: [],
             swapped: [],
-            speed: { min: 1, max: 100},
-            size: { min: 10, max: 100},
+            speed: 100,
+            size: 100,
+            // speed: { min: 1, max: 100},
+            // size: { min: 10, max: 100},
             sorting: false,
             completed: false,
         };
@@ -99,7 +101,7 @@ export default class App extends React.Component {
                 <div className="menuContainer">
                     <div className="title">Sorting Algorithm Visualizer</div>
                     <div className="speedText">Speed</div>
-                    <InputRange
+                    <input
                         disabled={this.state.sorting}
                         className="speedBar"
                         style={{ width: "300px" }}
@@ -110,7 +112,7 @@ export default class App extends React.Component {
                         value={this.state.speed}
                     />
                     <div className="sizeText">Size</div>
-                    <InputRange
+                    <input
                         disabled={this.state.sorting}
                         className="sizeBar"
                         type="range"
