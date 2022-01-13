@@ -61,15 +61,15 @@ html {
     color:turquoise;
 }
 
-.arrayBar {
-    width: 12px;
-    display: inline-block;
-    background-color: lightgreen;
-    margin: 0 1px;
-}
-
 .arrayContainer {
     position: absolute;
     bottom: 0vh;
-    left: 9vh;
+    text-align: center;
+    width: 100%;
+}
+
+.arrayBar {
+    display: inline-block;
+    background-color: lightgreen;
+    margin: 0 1px;
 }

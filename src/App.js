@@ -15,8 +15,8 @@ export default class App extends React.Component {
         this.setState({ speed: e.currentTarget.value });
     };
 
-    handleSize = (e) => {
-        this.setState({ size: e.currentTarget.value });
+    handleSize = (size) => {
+        this.setState({ size: size.currentTarget.value });
         this.randomizeArray();
     };
 
@@ -67,21 +67,21 @@ export default class App extends React.Component {
                         style={{ width: "300px" }}
                         onInput={this.handleSpeed}
                         type="range"
-                        min="1"
-                        max="5"
-                        step="1"
+                        min={1}
+                        max={5}
+                        step={1}
                         value={this.state.speed}
                     />
                     <div className="sizeText">Size</div>
                     <input
                         className="sizeBar"
-                        style={{ width: "300px" }}
-                        onInput={this.handleSize}
                         type="range"
-                        min="10"
-                        max="100"
-                        step="1"
-                        value={this.state.size}
+                        min={10}
+                        max={100}
+                        step={1}
+                        onInput={this.handleSize}
+                        // value={this.state.size}
+                        style={{ width: "300px" }}
                     />
                     <div className="buttons">
                         <button
@@ -125,7 +125,7 @@ export default class App extends React.Component {
                         <div
                             className="arrayBar"
                             key={index}
-                            style={{ height: value }}
+                            style={{ height: value, width: 12 }}
                         ></div>
                     ))}
                 </div>
