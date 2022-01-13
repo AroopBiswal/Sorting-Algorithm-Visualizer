@@ -11,9 +11,8 @@ export default class App extends React.Component {
         this.state = {
             array: [],
             compared: [],
-            swapped: [],
             sorted: [],
-            speed: 10,
+            speed: 100,
             size: 100,
             sorting: false,
             completed: false,
@@ -23,7 +22,6 @@ export default class App extends React.Component {
     //Speed Change
     handleSpeed = (speed) => {
         this.setState({ speed: speed.currentTarget.value });
-        console.log(this.state.speed);
     };
 
     //Size Change
@@ -40,7 +38,6 @@ export default class App extends React.Component {
         this.setState({ completed: false });
         this.setState({sorted: []});
         this.setState({compared: []});
-        this.setState({swapped: []});
         const tempArray = [];
         for (let i = 0; i < this.state.size; i++) {
             tempArray.push(Math.floor(Math.random() * (max - min + 1) + min));
@@ -53,9 +50,9 @@ export default class App extends React.Component {
         this.randomizeArray();
     }
 
-    /*Function that updates array, compared, swapped, and sorted state arrays after setTimeout() experies per loop
-    The array.map((value, index) in arrayContainer will then generate the bars based on if they are in compared, swapped, or sorted
-    If value at index is in compared or swapped, the bar color is light coral
+    /*Function that updates array, compared/swapped, and sorted state arrays after setTimeout() experies per loop
+    The array.map((value, index) in arrayContainer will then generate the bars based on if they are in compared/swapped, or sorted
+    If value at index is in compared/swapped, the bar color is light coral
     If value at index is in sorted, the bar color is light green
     Otherwise, the bar color is light blue*/
     visualize(visualization) {
@@ -71,7 +68,7 @@ export default class App extends React.Component {
 
                 if (tempArray !== null) {
                     this.setState({ array: tempArray });
-                    this.setState({ swapped: [j, k] });
+                    //this.setState({ swapped: [j, k] });
                 }
 
                 if (i >= visualization.length - 1) {
@@ -79,7 +76,7 @@ export default class App extends React.Component {
                     this.setState({ completed: true });
                 }
 
-            }, i * 20.0 / this.state.speed);
+            }, i * Math.ceil(300 / this.state.speed));
         }
     }
 
@@ -101,7 +98,7 @@ export default class App extends React.Component {
                         onChange={this.handleSpeed}
                         type="range"
                         min={1}
-                        max={10}
+                        max={100}
                         value={this.state.speed}
                     />
                     <div className="sizeText">Size</div>
@@ -170,9 +167,6 @@ export default class App extends React.Component {
                     {array.map((value, index) => {
                         let color = "lightblue";
                         if(this.state.compared && (index === this.state.compared[0] || index === this.state.compared[1])) {
-                            color = "lightcoral";
-                        }
-                        if(this.state.swapped && (index === this.state.swapped[0] || index === this.state.swapped[1])) {
                             color = "lightcoral";
                         }
                         if(this.state.sorted && this.state.sorted.includes(index)) {

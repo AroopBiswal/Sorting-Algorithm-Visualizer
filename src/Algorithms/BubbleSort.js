@@ -5,7 +5,6 @@ function swap(array, index1, index2) {
 }
 
 export default function bubbleSort(array) {
-    console.log("bubbleSort");
     const duplicate = array.slice();
     const visualizaion = [];
 
