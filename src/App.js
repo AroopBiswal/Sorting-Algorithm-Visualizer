@@ -34,6 +34,9 @@ export default class App extends React.Component {
         var min = 1;
         this.setState({ sorting: false });
         this.setState({ completed: false });
+        this.setState({sorted: []});
+        this.setState({compared: []});
+        this.setState({swapped: []});
         const array = [];
         for (let i = 0; i < this.state.size; i++) {
             array.push(Math.floor(Math.random() * (max - min + 1) + min));
@@ -49,25 +52,28 @@ export default class App extends React.Component {
         this.setState({ sorting: true });
         for (let i = 0; i < visualization.length; i++) {
             const [j, k, tempArray, index] = visualization[i];
-            this.setState({ compared: [j, k] });
-            this.setState({ swapped: [] });
             setTimeout(() => {
+                this.setState({ compared: [j, k] });
+                this.setState({ swapped: [] });
                 if (index !== null) {
-                    this.setState({ sorted: this.state.sorted.push(index) });
+                    this.setState({ sorted: this.state.sorted.concat(index) });
                 }
 
                 if (tempArray !== null) {
                     this.setState({ array: tempArray });
                     this.setState({ swapped: [j, k] });
                 }
-            }, i * 20 / this.state.speed);
+
+                if (i >= visualization.length - 1) {
+                    this.setState({ sorting: false });
+                    this.setState({ completed: true });
+                }
+
+            }, i * 40.0 / this.state.speed);
         }
-        this.setState({ sorting: false });
-        this.setState({ completed: true });
     }
 
     bubbleSort() {
-        console.log("bubbleSort");
         this.visualize(bubbleSort(this.state.array));
     }
 
@@ -151,13 +157,23 @@ export default class App extends React.Component {
                 </div>
 
                 <div id="arrayContainer" className="arrayContainer">
-                    {array.map((value, index) => (
-                        <div
+                    {array.map((value, index) => {
+                        let color = "lightblue";
+                        if(this.state.compared && (index === this.state.compared[0] || index === this.state.compared[1])) {
+                            color = "lightcoral";
+                        }
+                        if(this.state.swapped && (index === this.state.swapped[0] || index === this.state.swapped[1])) {
+                            color = "lightcoral";
+                        }
+                        if(this.state.sorted && this.state.sorted.includes(index)) {
+                            color = "lightgreen";
+                        }
+                        return (<div
                             className="arrayBar"
                             key={index}
-                            style={{ height: value, width: 12 }}
-                        ></div>
-                    ))}
+                            style={{ height: value, width: 12, backgroundColor: color}}
+                        ></div>)
+                    })}
                 </div>
             </div>
         );
