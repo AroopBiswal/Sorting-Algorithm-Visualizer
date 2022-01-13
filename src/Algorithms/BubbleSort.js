@@ -1,8 +1,4 @@
-function swap(array, index1, index2) {
-    var temp = array[index1];
-    array[index1] = array[index2];
-    array[index2] = temp;
-}
+import swap from "./Helper";
 
 export default function bubbleSort(array) {
     const duplicate = array.slice();
