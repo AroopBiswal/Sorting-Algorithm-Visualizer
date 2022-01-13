@@ -13,22 +13,26 @@ export default class App extends React.Component {
             compared: [],
             swapped: [],
             sorted: [],
-            speed: 20,
+            speed: 10,
             size: 100,
             sorting: false,
             completed: false,
         };
     }
+
+    //Speed Change
     handleSpeed = (speed) => {
         this.setState({ speed: speed.currentTarget.value });
         console.log(this.state.speed);
     };
 
+    //Size Change
     handleSize = (size) => {
         this.setState({ size: size.currentTarget.value });
         this.randomizeArray();
     };
 
+    //Create random array of size state.size and assign it to state.array
     randomizeArray() {
         var max = 500;
         var min = 1;
@@ -37,17 +41,23 @@ export default class App extends React.Component {
         this.setState({sorted: []});
         this.setState({compared: []});
         this.setState({swapped: []});
-        const array = [];
+        const tempArray = [];
         for (let i = 0; i < this.state.size; i++) {
-            array.push(Math.floor(Math.random() * (max - min + 1) + min));
+            tempArray.push(Math.floor(Math.random() * (max - min + 1) + min));
         }
-        this.setState({ array });
+        this.setState({ array: tempArray });
     }
 
+    //When site reloads
     componentDidMount() {
         this.randomizeArray();
     }
 
+    /*Function that updates array, compared, swapped, and sorted state arrays after setTimeout() experies per loop
+    The array.map((value, index) in arrayContainer will then generate the bars based on if they are in compared, swapped, or sorted
+    If value at index is in compared or swapped, the bar color is light coral
+    If value at index is in sorted, the bar color is light green
+    Otherwise, the bar color is light blue*/
     visualize(visualization) {
         this.setState({ sorting: true });
         for (let i = 0; i < visualization.length; i++) {
@@ -69,7 +79,7 @@ export default class App extends React.Component {
                     this.setState({ completed: true });
                 }
 
-            }, i * 40.0 / this.state.speed);
+            }, i * 20.0 / this.state.speed);
         }
     }
 
@@ -91,7 +101,7 @@ export default class App extends React.Component {
                         onChange={this.handleSpeed}
                         type="range"
                         min={1}
-                        max={20}
+                        max={10}
                         value={this.state.speed}
                     />
                     <div className="sizeText">Size</div>
