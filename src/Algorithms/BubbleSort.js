@@ -16,3 +16,6 @@ export default function bubbleSort(array) {
     }
     return visualization;
 };
+
+
+// [[i, j, temparray, completed],[]]

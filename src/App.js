@@ -105,6 +105,7 @@ export default class App extends React.Component {
             <div>
                 <div className="menuContainer">
                     <div className="title">Sorting Algorithm Visualizer</div>
+                    <div className="barContainer">
                     <div className="speedText">Speed</div>
                     <input
                         disabled={this.state.sorting}
@@ -125,6 +126,7 @@ export default class App extends React.Component {
                         onChange={this.handleSize}
                         value={this.state.size}
                         style={{ width: "300px" }}></input>
+                    </div>
                     <button
                         disabled={this.state.sorting}
                         className="button"

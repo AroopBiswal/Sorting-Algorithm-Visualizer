@@ -3,6 +3,7 @@ html {
 }
 
 .menuContainer {
+    text-align: center;
     position: absolute;
     background-color: rgba(33, 28, 73, 0.555);
     width: 100%;
@@ -17,33 +18,53 @@ html {
     font-size: 2.5em;
 }
 
+.barContainer {
+    display: flex;
+    align-items: center;
+    border: none;
+    background: none;
+    overflow:auto;
+    margin: auto;
+    margin-top: 1vh;
+    width: 45%;
+}
+
 .speedText {
-    position: absolute;
     color: lightcoral;
     text-transform: uppercase;
     font-weight: bold;
     font-size: 1.5em;
-    margin-left: 325px;
-    margin-top: 10px;
+    text-align: center;
+    float: left;
+    padding-right: 5px;
+    /* margin: none;
+    border: none;
+    background: none; */
 }
 .speedBar {
-    position: absolute;
-    margin-top: 20px;
-    margin-left: 425px;
+    /* margin-top: 20px;
+    margin-left: 425px; */
+    float: left;
+    margin-top: 5px;
+    margin-right: 10vw;    
+    
 }
 .sizeText {
-    position: absolute;
     color: lightcoral;
     text-transform: uppercase;
     font-weight: bold;
     font-size: 1.5em;
-    margin-left: 825px;
-    margin-top: 10px;
+    text-align: center;
+    float: left;
+    padding-right: 5px;
+    /* margin-left: 825px;
+    margin-top: 10px; */
 }
 .sizeBar {
-    position: absolute;
-    margin-top: 20px;
-    margin-left: 895px;
+    /* margin-top: 20px;
+    margin-left: 895px; */
+    float: left;
+    margin-top: 5px;
 }
 
 .button {
@@ -52,7 +73,7 @@ html {
     border: none;
     background: none;
     color: lightgreen;
-    margin-top: 70px;
+    margin-top: 4vh;
     text-transform: uppercase;
     font-weight: bold;
     font-size: 1em;
