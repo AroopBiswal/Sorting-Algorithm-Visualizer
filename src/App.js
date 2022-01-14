@@ -7,7 +7,7 @@ import bubbleSort from "./Algorithms/BubbleSort.js";
 import selectionSort from "./Algorithms/SelectionSort.js"
 import insertionSort from "./Algorithms/InsertionSort.js"
 import heapSort from "./Algorithms/HeapSort.js";
-//import quickSort from "./Algorithms/QuickSort";
+import quickSort from "./Algorithms/QuickSort.js";
 
 export default class App extends React.Component {
     constructor(props) {
@@ -17,7 +17,7 @@ export default class App extends React.Component {
             compared: [],
             sorted: [],
             swapped: [],
-            speed: 20,
+            speed: 50,
             size: 100,
             // speed: { min: 1, max: 100},
             // size: { min: 10, max: 100},
@@ -66,13 +66,12 @@ export default class App extends React.Component {
     visualize(visualization) {
         this.setState({ sorting: true });
         for (let i = 0; i < visualization.length; i++) {
-            // console.log("Visualization called -> " + i);
-            const [j, k, tempArray, index] = visualization[i];
+            const [j, k, tempArray, completedIndex] = visualization[i];
             setTimeout(() => {
                 this.setState({ compared: [j, k] });
                 this.setState({ swapped: [] });
-                if (index !== null) {
-                    this.setState({ sorted: this.state.sorted.concat(index) });
+                if (completedIndex !== null) {
+                    this.setState({ sorted: this.state.sorted.concat(completedIndex) });
                 }
 
                 if (tempArray !== null) {
@@ -85,7 +84,7 @@ export default class App extends React.Component {
                     this.setState({ completed: true });
                 }
 
-            }, i * Math.ceil(500 / this.state.speed));
+            }, i * Math.ceil(1000 / this.state.speed));
         }
     }
 
@@ -105,6 +104,10 @@ export default class App extends React.Component {
         this.visualize(heapSort(this.state.array));
     }
 
+    quickSort() {
+        this.visualize(quickSort(this.state.array));
+    }
+
     render() {
         const array = this.state.array;
         return (
@@ -120,7 +123,7 @@ export default class App extends React.Component {
                         onChange={this.handleSpeed}
                         type="range"
                         min={1}
-                        max={20}
+                        max={50}
                         value={this.state.speed}></input>
                     <div className="sizeText">Size</div>
                     <input
@@ -178,7 +181,7 @@ export default class App extends React.Component {
                     <button
                         disabled={this.state.sorting || this.state.completed}
                         className="button"
-                        onClick={() => this.heapSort()}
+                        onClick={() => this.quickSort()}
                     >
                         Quick Sort
                     </button>
