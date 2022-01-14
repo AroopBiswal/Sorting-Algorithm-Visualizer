@@ -10,22 +10,22 @@ export default function quickSort(array) {
             return;
         }
 
-        //let pivotValue = duplicate[end];
         var pivot = start;
-        //var j = start + 1;
 
         for (let i = start; i < end; i++) {
             visualization.push([i, end, null, null]);
             if (duplicate[i] < duplicate[end]) {
-                swap(duplicate, i, pivot);
-                visualization.push([i, pivot, duplicate.slice(), null]);
+                if (i !== pivot) {
+                    swap(duplicate, i, pivot);
+                    visualization.push([i, pivot, duplicate.slice(), null]);
+                }
                 pivot++;
             }
         }
 
         swap(duplicate, end, pivot);
         visualization.push([end, pivot, duplicate.slice(), null]);
-        
+
         visualization.push([null, null, null, pivot]);
 
         quickSortHelper(start, pivot - 1);
@@ -33,7 +33,7 @@ export default function quickSort(array) {
     }
 
     quickSortHelper(0, duplicate.length - 1);
-    console.log(visualization)
+    console.log(visualization);
     return visualization;
 }
 

@@ -12,22 +12,34 @@ export default function heapSort(array) {
         let rChild = 2 * i + 2;
 
         //Checks if left child node is bigger than the parent node
-        if (lChild < size)
-        visualization.push([lChild, largest, null, null]);
-        if (lChild < size && duplicate[lChild] > duplicate[largest]) {
-            largest = lChild;
+        if (rChild < size && lChild < size) {
+            visualization.push([lChild, rChild, null, null]);
+            if (duplicate[lChild] > duplicate[rChild]) {
+                largest = lChild;
+            }
+
+            else {
+                largest = rChild;
+            }
         }
-        if (rChild < size)
-        visualization.push([rChild, largest, null, null]);
-        if (rChild < size && duplicate[rChild] > duplicate[largest]) {
-            largest = rChild;
-        }
+        // if (lChild < size)
+        // visualization.push([lChild, largest, null, null]);
+        // if (lChild < size && duplicate[lChild] > duplicate[largest]) {
+        //     largest = lChild;
+        // }
+        // if (rChild < size)
+        // visualization.push([rChild, largest, null, null]);
+        // if (rChild < size && duplicate[rChild] > duplicate[largest]) {
+        //     largest = rChild;
+        // }
 
         // visualization.push([largest, i, null, null]);
         if (largest !== i) {
             visualization.push([largest, i, null, null]);
-            swap(duplicate, largest, i);
-            visualization.push([largest, i, duplicate.slice(), null]);
+            if (duplicate[largest] > duplicate[i]) {
+                swap(duplicate, largest, i);
+                visualization.push([largest, i, duplicate.slice(), null]);
+            }
             heapSortHelper(size, largest);
         }
     }
@@ -44,6 +56,6 @@ export default function heapSort(array) {
         heapSortHelper(i, 0);
     }
     visualization.push([null, null, null, 0]);
-    console.log(visualization)
+    console.log(visualization);
     return visualization;
 }
