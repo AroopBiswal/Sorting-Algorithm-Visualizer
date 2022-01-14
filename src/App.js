@@ -6,6 +6,7 @@ import "./App.css";
 import bubbleSort from "./Algorithms/BubbleSort.js";
 import selectionSort from "./Algorithms/SelectionSort.js"
 import insertionSort from "./Algorithms/InsertionSort.js"
+import heapSort from "./Algorithms/HeapSort.js";
 //import quickSort from "./Algorithms/QuickSort";
 
 export default class App extends React.Component {
@@ -65,6 +66,7 @@ export default class App extends React.Component {
     visualize(visualization) {
         this.setState({ sorting: true });
         for (let i = 0; i < visualization.length; i++) {
+            console.log("Visualization called -> " + i);
             const [j, k, tempArray, index] = visualization[i];
             setTimeout(() => {
                 this.setState({ compared: [j, k] });
@@ -97,6 +99,10 @@ export default class App extends React.Component {
 
     insertionSort() {
         this.visualize(insertionSort(this.state.array));
+    }
+
+    heapSort() {
+        this.visualize(heapSort(this.state.array));
     }
 
     render() {
@@ -158,14 +164,14 @@ export default class App extends React.Component {
                     <button
                         disabled={this.state.sorting || this.state.completed}
                         className="button"
-                        onClick={() => this.insertionSort()}
+                        onClick={() => this.heapSort()}
                     >
                         Heap Sort
                     </button>
                     <button
                         disabled={this.state.sorting || this.state.completed}
                         className="button"
-                        onClick={() => this.selectionSort()}
+                        onClick={() => this.mergeSort()}
                     >
                         Merge Sort
                     </button>
