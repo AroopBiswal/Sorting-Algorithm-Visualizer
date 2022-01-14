@@ -66,7 +66,7 @@ export default class App extends React.Component {
     visualize(visualization) {
         this.setState({ sorting: true });
         for (let i = 0; i < visualization.length; i++) {
-            console.log("Visualization called -> " + i);
+            // console.log("Visualization called -> " + i);
             const [j, k, tempArray, index] = visualization[i];
             setTimeout(() => {
                 this.setState({ compared: [j, k] });

@@ -6,7 +6,6 @@ export default function heapSort(array) {
 
     function heapSortHelper(size, i)
     {
-        console.log("heapsorthealpr called");
         //i represents the index of the parent node
         let largest = i;
         // Represents the index of the left and right child nodes
@@ -36,11 +35,9 @@ export default function heapSort(array) {
 
     }
 
-    
-    let loops = 1;
+
 
     for (let i = Math.floor(duplicate.length / 2) - 1; i >= 0; i--) {
-        loops++;
         heapSortHelper(duplicate.length, i);
     }
 
@@ -54,9 +51,6 @@ export default function heapSort(array) {
     }
     visualization.push([null, null, null, 0]);
     
-
-
-    console.log("sorted array: " + duplicate);
 
     return visualization; 
 }
