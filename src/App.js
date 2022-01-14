@@ -5,6 +5,7 @@ import "./App.css";
 //Algorithms
 import bubbleSort from "./Algorithms/BubbleSort.js";
 import selectionSort from "./Algorithms/SelectionSort.js"
+import insertionSort from "./Algorithms/InsertionSort.js"
 //import quickSort from "./Algorithms/QuickSort";
 
 export default class App extends React.Component {
@@ -15,7 +16,7 @@ export default class App extends React.Component {
             compared: [],
             sorted: [],
             swapped: [],
-            speed: 100,
+            speed: 20,
             size: 100,
             // speed: { min: 1, max: 100},
             // size: { min: 10, max: 100},
@@ -82,7 +83,7 @@ export default class App extends React.Component {
                     this.setState({ completed: true });
                 }
 
-            }, i * Math.ceil(400 / this.state.speed));
+            }, i * Math.ceil(500 / this.state.speed));
         }
     }
 
@@ -92,6 +93,10 @@ export default class App extends React.Component {
 
     selectionSort() {
         this.visualize(selectionSort(this.state.array));
+    }
+
+    insertionSort() {
+        this.visualize(insertionSort(this.state.array));
     }
 
     render() {
@@ -107,21 +112,19 @@ export default class App extends React.Component {
                         style={{ width: "300px" }}
                         onChange={this.handleSpeed}
                         type="range"
-                        minValue={1}
-                        maxValue={100}
-                        value={this.state.speed}
-                    />
+                        min={1}
+                        max={20}
+                        value={this.state.speed}></input>
                     <div className="sizeText">Size</div>
                     <input
                         disabled={this.state.sorting}
                         className="sizeBar"
                         type="range"
-                        minValue={5}
-                        maxValue={100}
+                        min={10}
+                        max={100}
                         onChange={this.handleSize}
                         value={this.state.size}
-                        style={{ width: "300px" }}
-                    />
+                        style={{ width: "300px" }}></input>
                     <button
                         disabled={this.state.sorting}
                         className="button"
@@ -146,7 +149,7 @@ export default class App extends React.Component {
                     <button
                         disabled={this.state.sorting || this.state.completed}
                         className="button"
-                        onClick={() => this.mergeSort()}
+                        onClick={() => this.insertionSort()}
                     >
                         Insertion Sort
                     </button>
