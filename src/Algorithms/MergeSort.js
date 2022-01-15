@@ -56,7 +56,6 @@ export default function mergeSort(array) {
 
     }
 
-    //main
     mergeSortHelper(0, duplicate.length - 1);
 
     for(let i = 0; i < duplicate.length; i++) {
@@ -67,41 +66,3 @@ export default function mergeSort(array) {
     
 
 }
-
-
-
-
-// function mergeSortHelper(leftContainer, rightContainer) {
-    //     let tempArray = [];
-    //     left = leftContainer[0];
-    //     leftIndex = leftContainer[1];
-    //     right = rightContainer[0];
-    //     rightIndex = rightContaienr[1];
-
-    //     // Merges left and right array in order from least to greatest
-    //     while(left.length != 0 && right.length != 0) {
-    //         visualization.push([leftIndex, rightIndex, null, null])
-    //         if(duplicate[left] > duplicate[right]) {
-                
-    //             tempArray.push(right.splice(0,1));
-    //         }
-    //         else {
-
-    //         }
-
-    //     }
-        
-    // }
-
-    // function mergeSortMain(array, arrayIndex) {
-
-    //     // Base case
-    //     if(array.length < 2) {
-    //         return [array, arrayIndex];
-    //     }
-    //     // Splits the array roughly in half into two arrays
-    //     let left = duplicate.slice(0, array.length/2);
-    //     let right = duplicate.slice(array.length/2, array.length);
-
-    //     return mergeSortHelper(mergeSortMain(left, 0), mergeSortMain(right, array.length/2));
-    // }

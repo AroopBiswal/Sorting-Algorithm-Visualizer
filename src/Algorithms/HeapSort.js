@@ -22,18 +22,7 @@ export default function heapSort(array) {
                 largest = rChild;
             }
         }
-        // if (lChild < size)
-        // visualization.push([lChild, largest, null, null]);
-        // if (lChild < size && duplicate[lChild] > duplicate[largest]) {
-        //     largest = lChild;
-        // }
-        // if (rChild < size)
-        // visualization.push([rChild, largest, null, null]);
-        // if (rChild < size && duplicate[rChild] > duplicate[largest]) {
-        //     largest = rChild;
-        // }
-
-        // visualization.push([largest, i, null, null]);
+        
         if (largest !== i) {
             visualization.push([largest, i, null, null]);
             if (duplicate[largest] > duplicate[i]) {

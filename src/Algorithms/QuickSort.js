@@ -41,18 +41,3 @@ export default function quickSort(array) {
     console.log(visualization);
     return visualization;
 }
-
-// var pivotIndex = end;
-// var pivot = array[start];
-
-// for (var i = start; i < end; i++)
-// {
-//     if (array[i] >= pivot)
-//     {
-//         swap(array, i, pivotIndex)
-//         pivotIndex--;
-//     }
-// }
-// swap(array, start, pivotIndex);
-
-// return pivotIndex;
