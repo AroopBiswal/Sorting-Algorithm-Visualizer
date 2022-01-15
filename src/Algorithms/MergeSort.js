@@ -1,6 +1,3 @@
-import swap from "./Helper";
-
-
 export default function mergeSort(array) {
     const visualization = [];
     const duplicate = array.slice()
