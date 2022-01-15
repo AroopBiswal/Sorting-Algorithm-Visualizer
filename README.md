@@ -1,6 +1,6 @@
 # Sorting-Algorithm-Visualizer
 
-### Created by Aroop Biswal and [Victor Huang](https://github.com/vhcent)
+### Created by [Aroop Biswal](https://github.com/AroopBiswal) and [Victor Huang](https://github.com/vhcent)
 
 ```
   $ git clone https://github.com/AroopBiswal/Sorting-Algorithm-Visualizer.git
