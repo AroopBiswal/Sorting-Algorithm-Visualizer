@@ -6,7 +6,6 @@
   $ git clone https://github.com/AroopBiswal/Sorting-Algorithm-Visualizer.git
   $ npm install
   $ npm start
-  
  ```
 
 https://sortingalgovisual.herokuapp.com/
