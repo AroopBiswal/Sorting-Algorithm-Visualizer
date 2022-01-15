@@ -1,72 +1,53 @@
-function quickSort(array, start, end) {
-    if (start >= end)
-    {
-        return;
-    }
-    
-    let index = quickSortHelper(array, start, end);
-    quickSort(array, start, index - 1);
-    quickSort(array, index + 1, end);
-}
+import swap from "./Helper";
 
+export default function quickSort(array) {
+    const duplicate = array.slice();
+    const visualization = [];
 
-function quickSortHelper(array, start, end) 
-{
-    var pivotIndex = end;
-    var pivot = array[start];
-
-    for (var i = start; i < end; i++)
-    {
-        if (array[i] >= pivot)
-        {
-            swap(array, i, pivotIndex)
-            pivotIndex--;
+    function quickSortHelper(start, end) {
+        if (start >= end) {
+            visualization.push([null, null, null, start]);
+            return;
         }
+
+        var pivot = start;
+
+        for (let i = start; i < end; i++) {
+            visualization.push([i, end, null, null]);
+            if (duplicate[i] < duplicate[end]) {
+                if (i !== pivot) {
+                    swap(duplicate, i, pivot);
+                    visualization.push([i, pivot, duplicate.slice(), null]);
+                }
+                pivot++;
+            }
+        }
+
+        swap(duplicate, end, pivot);
+        visualization.push([end, pivot, duplicate.slice(), null]);
+
+        visualization.push([null, null, null, pivot]);
+
+        quickSortHelper(start, pivot - 1);
+        quickSortHelper(pivot + 1, end);
     }
-    swap(array, start, pivotIndex);
 
-    return pivotIndex;
+    quickSortHelper(0, duplicate.length - 1);
+    console.log(visualization);
+    return visualization;
 }
 
-function swap(array, index1, index2)
-{
-    var temp = array[index1];
-    array[index1] = array[index2];
-    array[index2] = temp;
-}
+// var pivotIndex = end;
+// var pivot = array[start];
 
-
-//Old Quicksort Function
-// function quickSort(array) 
+// for (var i = start; i < end; i++)
 // {
-//     let length = array.length;
-//     if (length <= 1) 
-//     { 
-//         return array;
-//     }
-//     var leftArray = [];
-//     var rightArray = [];
-//     var pivotIndex = Math.floor(length/2);
-//     var pivot = array[pivotIndex];
-    
-
-//     for (var i = 0; i < length; i++)
+//     if (array[i] >= pivot)
 //     {
-//         if(i != pivotIndex)
-//         {
-            
-//             if (array[i] < pivot)
-//             {
-//                 leftArray.push(array[i]);
-//             }
-//             else
-//             {
-//                 rightArray.push(array[i]);
-//             }
-//         }
+//         swap(array, i, pivotIndex)
+//         pivotIndex--;
 //     }
-
-//     return quickSort(leftArray).concat(pivot, quickSort(rightArray));
 // }
+// swap(array, start, pivotIndex);
 
-export default quickSort;
+// return pivotIndex;
