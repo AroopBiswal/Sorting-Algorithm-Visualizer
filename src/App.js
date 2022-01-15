@@ -7,6 +7,7 @@ import bubbleSort from "./Algorithms/BubbleSort.js";
 import selectionSort from "./Algorithms/SelectionSort.js"
 import insertionSort from "./Algorithms/InsertionSort.js"
 import heapSort from "./Algorithms/HeapSort.js";
+import mergeSort from "./Algorithms/MergeSort.js";
 import quickSort from "./Algorithms/QuickSort.js";
 
 export default class App extends React.Component {
@@ -104,9 +105,14 @@ export default class App extends React.Component {
         this.visualize(heapSort(this.state.array));
     }
 
+    mergeSort() {
+        this.visualize(mergeSort(this.state.array));
+    }
+
     quickSort() {
         this.visualize(quickSort(this.state.array));
     }
+
 
     render() {
         const array = this.state.array;
