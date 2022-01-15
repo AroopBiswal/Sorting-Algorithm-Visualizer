@@ -1,6 +1,13 @@
 # Sorting-Algorithm-Visualizer
 
-##Created by Victor Huang and Aroop Biswal
+## Created by Victor Huang and Aroop Biswal
+
+```
+  $ git clone https://github.com/AroopBiswal/Sorting-Algorithm-Visualizer.git
+  $ npm install
+  $ npm start
+  
+ ```
 
 https://sortingalgovisual.herokuapp.com/
 
