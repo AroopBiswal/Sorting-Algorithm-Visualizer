@@ -1,4 +1,3 @@
-<<<<<<< Updated upstream
 import React from "react";
 //import InputRange from 'react-input-range';
 import "./App.css";
@@ -436,4 +435,3 @@ export default class App extends React.Component {
         );
     }
 }
->>>>>>> Stashed changes
