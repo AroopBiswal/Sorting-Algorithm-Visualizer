@@ -33,7 +33,6 @@ export default class App extends React.Component {
     // componentDidUpdate() {
 
     // }
-
     //Speed Change
     handleSpeed = (speed) => {
         this.setState({ speed: speed.currentTarget.value });
@@ -104,7 +103,7 @@ export default class App extends React.Component {
             }, i * Math.ceil(1000 / this.state.speed));
         }
     }
-
+    //Calls algorithm function and passes in array state
     bubbleSort() {
         this.visualize(bubbleSort(this.state.array));
     }
