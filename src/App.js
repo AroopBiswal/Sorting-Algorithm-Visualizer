@@ -24,7 +24,7 @@ export default class App extends React.Component {
             // size: undefined,
             sorting: false,
             completed: false,
-            // width: undefined,
+            maxBarHeight: 500,
             // height: undefined,
         };
     }
@@ -46,7 +46,6 @@ export default class App extends React.Component {
 
     //Create random array of size state.size and assign it to state.array
     randomizeArray() {
-        let max = 500;
         let min = 1;
         this.setState({ sorting: false });
         this.setState({ completed: false });
@@ -55,7 +54,9 @@ export default class App extends React.Component {
         this.setState({ compared: [] });
         const tempArray = [];
         for (let i = 0; i < this.state.width; i++) {
-            tempArray.push(Math.floor(Math.random() * (max - min + 1) + min));
+            tempArray.push(
+                Math.floor(Math.random() * this.state.maxBarHeight + min)
+            );
         }
         this.setState({ array: tempArray });
     }
@@ -67,10 +68,20 @@ export default class App extends React.Component {
     }
 
     updateDimensions = async () => {
+        let w = window.innerWidth;
         await this.setState({
-            width: Math.floor(window.innerWidth / 15),
-            maxWidth: Math.floor(window.innerWidth / 15),
+            width: Math.floor(w / 15),
+            maxWidth: Math.floor(w / 15),
         });
+        if (w >= 600) {
+            await this.setState({ maxBarHeight: 500 });
+        }
+        if (w < 600) {
+            await this.setState({ maxBarHeight: 400 });
+        }
+        if (w < 350) {
+            await this.setState({ maxBarHeight: 300 });
+        }
         this.randomizeArray();
     };
 
