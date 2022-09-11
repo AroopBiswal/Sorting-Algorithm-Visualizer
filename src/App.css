@@ -2,10 +2,6 @@ html {
     background-color: gray;
 }
 
-.main {
-    /* width: 100%; */
-}
-
 .menuContainer {
     text-align: center;
     display: flex;

@@ -4,8 +4,8 @@ import "./App.css";
 
 //Algorithms
 import bubbleSort from "./Algorithms/BubbleSort.js";
-import selectionSort from "./Algorithms/SelectionSort.js"
-import insertionSort from "./Algorithms/InsertionSort.js"
+import selectionSort from "./Algorithms/SelectionSort.js";
+import insertionSort from "./Algorithms/InsertionSort.js";
 import heapSort from "./Algorithms/HeapSort.js";
 import mergeSort from "./Algorithms/MergeSort.js";
 import quickSort from "./Algorithms/QuickSort.js";
@@ -39,8 +39,8 @@ export default class App extends React.Component {
     };
 
     //Size Change
-    handleSize = (size) => {
-        this.setState({ width: size.currentTarget.value });
+    handleSize = async (size) => {
+        await this.setState({ width: size.currentTarget.value });
         this.randomizeArray();
     };
 
@@ -54,7 +54,6 @@ export default class App extends React.Component {
         this.setState({ swapped: [] });
         this.setState({ compared: [] });
         const tempArray = [];
-        console.log("size when calling randomzie array", this.state.width);
         for (let i = 0; i < this.state.width; i++) {
             tempArray.push(Math.floor(Math.random() * (max - min + 1) + min));
         }
@@ -63,16 +62,17 @@ export default class App extends React.Component {
 
     //When site reloads
     componentDidMount() {
-        // const { innerWidth: width, innerHeight: height } = window;
-        // while(this.size == undefined) {
-        //     let maxSize = Math.floor(width / 30);
-        //     console.log("maxSize: " + maxSize);
-        //     this.setState({ size: 22});
-        //     console.log("size", this.size);
-        // }
-
+        window.addEventListener("resize", this.updateDimensions);
         this.randomizeArray();
     }
+
+    updateDimensions = async () => {
+        await this.setState({
+            width: Math.floor(window.innerWidth / 15),
+            maxWidth: Math.floor(window.innerWidth / 15),
+        });
+        this.randomizeArray();
+    };
 
     /*Function that updates array, compared/swapped, and sorted state arrays after setTimeout() experies per loop
     The array.map((value, index) in arrayContainer will then generate the bars based on if they are in compared/swapped, or sorted
@@ -87,7 +87,9 @@ export default class App extends React.Component {
                 this.setState({ compared: [j, k] });
                 this.setState({ swapped: [] });
                 if (completedIndex !== null) {
-                    this.setState({ sorted: this.state.sorted.concat(completedIndex) });
+                    this.setState({
+                        sorted: this.state.sorted.concat(completedIndex),
+                    });
                 }
 
                 if (tempArray !== null) {
@@ -99,7 +101,6 @@ export default class App extends React.Component {
                     this.setState({ sorting: false });
                     this.setState({ completed: true });
                 }
-
             }, i * Math.ceil(1000 / this.state.speed));
         }
     }
@@ -145,7 +146,8 @@ export default class App extends React.Component {
                                 type="range"
                                 min={1}
                                 max={50}
-                                value={this.state.speed}></input>
+                                value={this.state.speed}
+                            ></input>
                         </div>
                         <div>
                             <div className="sizeText">Size</div>
@@ -157,8 +159,8 @@ export default class App extends React.Component {
                                 max={this.state.maxWidth}
                                 onChange={this.handleSize}
                                 value={this.state.width}
-                                style={{ width: this.state.maxWidth * 5 }}>
-                            </input>
+                                style={{ width: this.state.maxWidth * 5 }}
+                            ></input>
                         </div>
                     </div>
                     <div className="buttonContainer">
@@ -170,42 +172,54 @@ export default class App extends React.Component {
                             Randomize
                         </button>
                         <button
-                            disabled={this.state.sorting || this.state.completed}
+                            disabled={
+                                this.state.sorting || this.state.completed
+                            }
                             className="button"
                             onClick={() => this.bubbleSort()}
                         >
                             Bubble Sort
                         </button>
                         <button
-                            disabled={this.state.sorting || this.state.completed}
+                            disabled={
+                                this.state.sorting || this.state.completed
+                            }
                             className="button"
                             onClick={() => this.selectionSort()}
                         >
                             Selection Sort
                         </button>
                         <button
-                            disabled={this.state.sorting || this.state.completed}
+                            disabled={
+                                this.state.sorting || this.state.completed
+                            }
                             className="button"
                             onClick={() => this.insertionSort()}
                         >
                             Insertion Sort
                         </button>
                         <button
-                            disabled={this.state.sorting || this.state.completed}
+                            disabled={
+                                this.state.sorting || this.state.completed
+                            }
                             className="button"
                             onClick={() => this.heapSort()}
                         >
                             Heap Sort
                         </button>
                         <button
-                            disabled={this.state.sorting || this.state.completed}
+                            disabled={
+                                this.state.sorting || this.state.completed
+                            }
                             className="button"
                             onClick={() => this.mergeSort()}
                         >
                             Merge Sort
                         </button>
                         <button
-                            disabled={this.state.sorting || this.state.completed}
+                            disabled={
+                                this.state.sorting || this.state.completed
+                            }
                             className="button"
                             onClick={() => this.quickSort()}
                         >
@@ -217,20 +231,37 @@ export default class App extends React.Component {
                 <div id="arrayContainer" className="arrayContainer">
                     {array.map((value, index) => {
                         let color = "lightblue";
-                        if (this.state.compared && (index === this.state.compared[0] || index === this.state.compared[1])) {
+                        if (
+                            this.state.compared &&
+                            (index === this.state.compared[0] ||
+                                index === this.state.compared[1])
+                        ) {
                             color = "lightcoral";
                         }
-                        if (this.state.swapped && (index === this.state.swapped[0] || index === this.state.swapped[1])) {
+                        if (
+                            this.state.swapped &&
+                            (index === this.state.swapped[0] ||
+                                index === this.state.swapped[1])
+                        ) {
                             color = "lightcoral";
                         }
-                        if (this.state.sorted && this.state.sorted.includes(index)) {
+                        if (
+                            this.state.sorted &&
+                            this.state.sorted.includes(index)
+                        ) {
                             color = "lightgreen";
                         }
-                        return (<div
-                            className="arrayBar"
-                            key={index}
-                            style={{ height: value, width: 12, backgroundColor: color }}
-                        ></div>)
+                        return (
+                            <div
+                                className="arrayBar"
+                                key={index}
+                                style={{
+                                    height: value,
+                                    width: 12,
+                                    backgroundColor: color,
+                                }}
+                            ></div>
+                        );
                     })}
                 </div>
             </div>
